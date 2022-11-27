@@ -16,7 +16,7 @@
           type="button"
           class="btn btn-secondary"
           :class="{ 'bg-dark': isTabActive(tab.id) }"
-          @click="changeTab(tab.id)"
+          @click="onChangeTab(tab.id)"
         >
           {{ tab.name }}
         </button>
@@ -26,12 +26,12 @@
     <div class="tools">
       <HeaderCustomSize
         v-if="currentTab === tabs.custom.id"
-        @change="changeSize"
+        @change="onChangeSize"
       />
 
       <HeaderTemplateSize
         v-if="currentTab === tabs.template.id"
-        @change="changeSize"
+        @change="onChangeSize"
       />
     </div>
 
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, defineEmits, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import HeaderCustomSize from '@/components/HeaderCustomSize.vue';
 import HeaderTemplateSize from '@/components/HeaderTemplateSize.vue';
 import Devider from '@/components/Devider.vue';
@@ -61,11 +61,11 @@ export default defineComponent({
     const isTabActive = (selectedTab: string): boolean =>
       selectedTab === currentTab.value;
 
-    const changeTab = (selectedTab: string): void => {
+    const onChangeTab = (selectedTab: string) => {
       currentTab.value = selectedTab;
     };
 
-    const changeSize = (size: TDictionaryNumber): void => {
+    const onChangeSize = (size: TDictionaryNumber) => {
       emit('changeSize', size);
     };
 
@@ -74,8 +74,8 @@ export default defineComponent({
       currentTab,
       deviderTypes,
       isTabActive,
-      changeTab,
-      changeSize,
+      onChangeTab,
+      onChangeSize,
     };
   },
 });

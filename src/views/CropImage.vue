@@ -1,5 +1,5 @@
 <template>
-  <Header @changeSize="changeSize" />
+  <Header @changeSize="onChangeSize" />
 </template>
 
 <script lang="ts">
@@ -12,14 +12,14 @@ export default defineComponent({
   components: { Header },
 
   setup() {
-    const changeSize = (size: TDictionaryNumber): void => {
+    const onChangeSize = (size: TDictionaryNumber): void => {
       const { width, height } = size;
 
       console.log(width, height);
     };
 
     return {
-      changeSize,
+      onChangeSize,
     };
   },
 });

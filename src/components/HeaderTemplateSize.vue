@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, defineEmits, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { sizeInit } from '@/configs';
 import { TDictionaryNumber } from '@/types';
 
@@ -23,10 +23,10 @@ export default defineComponent({
     const height = ref<number>(defaultSize.value.height);
 
     onMounted(() => {
-      change();
+      onChange();
     });
 
-    const change = () => {
+    const onChange = () => {
       emit('change', {
         width: width.value,
         height: height.value,
@@ -37,7 +37,7 @@ export default defineComponent({
       defaultSize,
       width,
       height,
-      change,
+      onChange,
     };
   },
 });
